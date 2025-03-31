@@ -1,0 +1,37 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+  <Import Project="..\..\BuildSettings\SupportedFrameworks.props" />
+  <Import Project="..\..\BuildSettings\NuGetVersioning.props" />
+
+  <PropertyGroup>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <RootNamespace>RonSijm.Syringe</RootNamespace>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <Title>RonSijm.Fluxor.Blazor.Web.Extensions</Title>
+    <Description>Some Fluxor Web Extensions.</Description>
+    <PackageProjectUrl>https://github.com/RonSijm/RonSijm.FuxorExtensions</PackageProjectUrl>
+    <Configurations>Debug;Release</Configurations>
+    <!--<PackageIcon>packaging\logo.png</PackageIcon>-->
+    <PackageReadmeFile>packaging\README.md</PackageReadmeFile>
+    <GeneratePackageOnBuild Condition="'$(Configuration)'=='Release'">True</GeneratePackageOnBuild>
+    <PackageOutputPath>..\..\packages</PackageOutputPath>
+  </PropertyGroup>
+
+  <ItemGroup Condition="'$(Configuration)' != 'debug'">
+    <!--TODO: <None Include="..\..\..\packaging\logo.png" Pack="true" PackagePath="packaging" />-->
+    <None Include="..\..\README.md" Pack="true" PackagePath="packaging" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(UseSourceProjects)' != 'true'">
+    <PackageReference Include="Fluxor" Version="6.*" />
+    <PackageReference Include="Fluxor.Blazor.Web" Version="6.*" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(UseSourceProjects)' == 'true'">
+    <ProjectReference Include="D:\Libraries\Fluxor\Source\Lib\Fluxor\Fluxor.csproj" />
+    <ProjectReference Include="D:\Libraries\Fluxor\Source\Lib\Fluxor.Blazor.Web\Fluxor.Blazor.Web.csproj" />
+  </ItemGroup>
+
+</Project>

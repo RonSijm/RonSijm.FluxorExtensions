@@ -1,0 +1,42 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+  <Import Project="..\..\BuildSettings\SupportedFrameworks.props" />
+  <Import Project="..\..\BuildSettings\NuGetVersioning.props" />
+
+  <PropertyGroup>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <BlazorWebAssemblyEnableLinking>false</BlazorWebAssemblyEnableLinking>
+    <LangVersion>preview</LangVersion>
+    <AnalysisLevel>5</AnalysisLevel>
+    <RootNamespace>RonSijm.Syringe</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup Condition="'$(Configuration)' != 'debug'">
+    <!--TODO: <None Include="..\..\..\packaging\logo.png" Pack="true" PackagePath="packaging" />-->
+    <None Include="..\..\README.md" Pack="true" PackagePath="packaging" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <Title>RonSijm.Fluxor.SessionStorage</Title>
+    <Description>A Session Storage Feature to persist states with Fluxor</Description>
+    <PackageProjectUrl>https://github.com/RonSijm/RonSijm.FuxorExtensions</PackageProjectUrl>
+    <Configurations>Debug;Release</Configurations>
+    <!--<PackageIcon>packaging\logo.png</PackageIcon>-->
+    <PackageReadmeFile>packaging\README.md</PackageReadmeFile>
+    <GeneratePackageOnBuild Condition="'$(Configuration)'=='Release'">True</GeneratePackageOnBuild>
+    <PackageOutputPath>..\..\packages</PackageOutputPath>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Blazored.SessionStorage" Version="2.4.0" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(UseSourceProjects)' != 'true'">
+    <PackageReference Include="Fluxor" Version="6.*" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(UseSourceProjects)' == 'true'">
+    <ProjectReference Include="D:\Libraries\Fluxor\Source\Lib\Fluxor\Fluxor.csproj" />
+  </ItemGroup>
+
+</Project>
