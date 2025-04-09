@@ -24,11 +24,7 @@ jobs:
           for proj in $(find . -name "*.csproj"); do
             dotnet build "$proj" --configuration Release -o "./packages"
           done
-      - name: Publish nupkg to NuGet
+      - name: Publish To NuGet
         env:
           NUGET_API_KEY: ${{secrets.NUGET_API_KEY}}
         run: dotnet nuget push "./packages/*.nupkg" --source https://api.nuget.org/v3/index.json --api-key $NUGET_API_KEY --skip-duplicate
-      - name: Publish symbols to NuGet
-        env:
-          NUGET_API_KEY: ${{secrets.NUGET_API_KEY}}
-        run: dotnet nuget push "./packages/*.snupkg" --source https://api.nuget.org/v3/index.json --api-key $NUGET_API_KEY --skip-duplicate
