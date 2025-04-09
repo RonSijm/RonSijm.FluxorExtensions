@@ -1,0 +1,9 @@
+<Project> 
+  <ItemGroup Condition="'$(USE_FLUXOREXTENSIONS_FROM_SOURCE)' != 'true'"> 
+    <PackageReference Include="RonSijm.Fluxor.SessionStorage" Version="[0.0.1,)" /> 
+  </ItemGroup> 
+ 
+  <ItemGroup Condition="'$(USE_FLUXOREXTENSIONS_FROM_SOURCE)' == 'true'"> 
+    <ProjectReference Include="$(FLUXOREXTENSIONS_PATH)\src\RonSijm.Fluxor.SessionStorage\RonSijm.Fluxor.SessionStorage.csproj" /> 
+  </ItemGroup> 
+</Project> 

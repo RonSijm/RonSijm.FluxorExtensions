@@ -11,7 +11,9 @@ jobs:
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: 9.0.101
+          dotnet-version: | 
+            8.x
+            9.x
       - name: Restore dependencies
         run: |
           for proj in $(find . -name "*.csproj"); do
@@ -22,7 +24,11 @@ jobs:
           for proj in $(find . -name "*.csproj"); do
             dotnet build "$proj" --configuration Release -o "./packages"
           done
-      - name: Publish to NuGet
+      - name: Publish nupkg to NuGet
         env:
           NUGET_API_KEY: ${{secrets.NUGET_API_KEY}}
         run: dotnet nuget push "./packages/*.nupkg" --source https://api.nuget.org/v3/index.json --api-key $NUGET_API_KEY --skip-duplicate
+      - name: Publish symbols to NuGet
+        env:
+          NUGET_API_KEY: ${{secrets.NUGET_API_KEY}}
+        run: dotnet nuget push "./packages/*.snupkg" --source https://api.nuget.org/v3/index.json --api-key $NUGET_API_KEY --skip-duplicate

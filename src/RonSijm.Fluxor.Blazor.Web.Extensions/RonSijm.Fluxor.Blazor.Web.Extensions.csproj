@@ -2,10 +2,13 @@
 
   <Import Project="..\..\BuildSettings\SupportedFrameworks.props" />
   <Import Project="..\..\BuildSettings\NuGetVersioning.props" />
+  <Import Project="..\..\BuildSettings\Include.Fluxor.props" />
+  <Import Project="..\..\BuildSettings\Include.Fluxor.Blazor.Web.props" />
 
   <PropertyGroup>
     <ImplicitUsings>enable</ImplicitUsings>
     <RootNamespace>RonSijm.Syringe</RootNamespace>
+    <ProjectReferenceId>2e00d80f-0710-5e0b-a2e4-6a930d9e959e</ProjectReferenceId>
   </PropertyGroup>
 
   <PropertyGroup>
@@ -15,7 +18,6 @@
     <Configurations>Debug;Release</Configurations>
     <!--<PackageIcon>packaging\logo.png</PackageIcon>-->
     <PackageReadmeFile>packaging\README.md</PackageReadmeFile>
-    <GeneratePackageOnBuild Condition="'$(Configuration)'=='Release'">True</GeneratePackageOnBuild>
     <PackageOutputPath>..\..\packages</PackageOutputPath>
   </PropertyGroup>
 
@@ -23,15 +25,4 @@
     <!--TODO: <None Include="..\..\..\packaging\logo.png" Pack="true" PackagePath="packaging" />-->
     <None Include="..\..\README.md" Pack="true" PackagePath="packaging" />
   </ItemGroup>
-
-  <ItemGroup Condition="'$(UseSourceProjects)' != 'true'">
-    <PackageReference Include="Fluxor" Version="6.*" />
-    <PackageReference Include="Fluxor.Blazor.Web" Version="6.*" />
-  </ItemGroup>
-
-  <ItemGroup Condition="'$(UseSourceProjects)' == 'true'">
-    <ProjectReference Include="D:\Libraries\Fluxor\Source\Lib\Fluxor\Fluxor.csproj" />
-    <ProjectReference Include="D:\Libraries\Fluxor\Source\Lib\Fluxor.Blazor.Web\Fluxor.Blazor.Web.csproj" />
-  </ItemGroup>
-
 </Project>

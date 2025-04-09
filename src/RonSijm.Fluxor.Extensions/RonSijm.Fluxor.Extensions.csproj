@@ -3,10 +3,12 @@
   <Import Project="..\..\BuildSettings\SupportedFrameworks.props" />
   <Import Project="..\..\BuildSettings\NuGetVersioning.props" />
   <Import Project="..\..\BuildSettings\DependencyInjectionAbstractionsForFramework.props" />
+  <Import Project="..\..\BuildSettings\Include.Fluxor.props" />
 
   <PropertyGroup>
     <ImplicitUsings>enable</ImplicitUsings>
     <RootNamespace>RonSijm.Syringe</RootNamespace>
+    <ProjectReferenceId>62d0686b-71f6-5b01-a6d0-a9e247e6abdc</ProjectReferenceId>
   </PropertyGroup>
 
   <PropertyGroup>
@@ -16,21 +18,12 @@
     <Configurations>Debug;Release</Configurations>
     <!--<PackageIcon>packaging\logo.png</PackageIcon>-->
     <PackageReadmeFile>packaging\README.md</PackageReadmeFile>
-    <GeneratePackageOnBuild Condition="'$(Configuration)'=='Release'">True</GeneratePackageOnBuild>
     <PackageOutputPath>..\..\packages</PackageOutputPath>
   </PropertyGroup>
 
   <ItemGroup Condition="'$(Configuration)' != 'debug'">
     <!--TODO: <None Include="..\..\..\packaging\logo.png" Pack="true" PackagePath="packaging" />-->
     <None Include="..\..\README.md" Pack="true" PackagePath="packaging" />
-  </ItemGroup>
-
-  <ItemGroup Condition="'$(UseSourceProjects)' != 'true'">
-    <PackageReference Include="Fluxor" Version="6.*" />
-  </ItemGroup>
-
-  <ItemGroup Condition="'$(UseSourceProjects)' == 'true'">
-    <ProjectReference Include="D:\Libraries\Fluxor\Source\Lib\Fluxor\Fluxor.csproj" />
   </ItemGroup>
 
   <ItemGroup>

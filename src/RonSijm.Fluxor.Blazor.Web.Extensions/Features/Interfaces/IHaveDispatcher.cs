@@ -1,4 +1,4 @@
-﻿namespace RonSijm.Syringe.Interfaces;
+﻿namespace RonSijm.Syringe;
 
 public interface IHaveDispatcher
 {

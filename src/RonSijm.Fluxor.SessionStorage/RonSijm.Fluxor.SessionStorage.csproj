@@ -2,6 +2,7 @@
 
   <Import Project="..\..\BuildSettings\SupportedFrameworks.props" />
   <Import Project="..\..\BuildSettings\NuGetVersioning.props" />
+  <Import Project="..\..\BuildSettings\Include.Fluxor.props" />
 
   <PropertyGroup>
     <ImplicitUsings>enable</ImplicitUsings>
@@ -9,6 +10,7 @@
     <LangVersion>preview</LangVersion>
     <AnalysisLevel>5</AnalysisLevel>
     <RootNamespace>RonSijm.Syringe</RootNamespace>
+    <ProjectReferenceId>033ecfb1-3618-5d68-bff1-a8c7ca23d961</ProjectReferenceId>
   </PropertyGroup>
 
   <ItemGroup Condition="'$(Configuration)' != 'debug'">
@@ -23,20 +25,10 @@
     <Configurations>Debug;Release</Configurations>
     <!--<PackageIcon>packaging\logo.png</PackageIcon>-->
     <PackageReadmeFile>packaging\README.md</PackageReadmeFile>
-    <GeneratePackageOnBuild Condition="'$(Configuration)'=='Release'">True</GeneratePackageOnBuild>
     <PackageOutputPath>..\..\packages</PackageOutputPath>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Blazored.SessionStorage" Version="2.4.0" />
   </ItemGroup>
-
-  <ItemGroup Condition="'$(UseSourceProjects)' != 'true'">
-    <PackageReference Include="Fluxor" Version="6.*" />
-  </ItemGroup>
-
-  <ItemGroup Condition="'$(UseSourceProjects)' == 'true'">
-    <ProjectReference Include="D:\Libraries\Fluxor\Source\Lib\Fluxor\Fluxor.csproj" />
-  </ItemGroup>
-
 </Project>
